@@ -1,9 +1,19 @@
 package com.example.mybatis_example.model;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class User {
-    
+
+
+    @NotNull
+    @Min(1)
     private Long id;
+
+    @NotNull
     private String name;
+
+    @NotNull
     private Integer age;
 
     public User() {

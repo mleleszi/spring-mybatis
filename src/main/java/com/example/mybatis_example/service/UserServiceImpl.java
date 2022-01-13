@@ -29,4 +29,28 @@ public class UserServiceImpl implements UserService {
             throw new NoSuchUserException(id);
         return optionalUser.get();
     }
+
+    @Override
+    public void save(User user) {
+        userRepository.insert(user);
+    }
+
+
+    @Override
+    public void delete(Long id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if(optionalUser.isEmpty())
+            throw new NoSuchUserException(id);
+        userRepository.delete(id);
+    }
+
+    @Override
+    public void update(User user) {
+        Optional<User> optionalUser = userRepository.findById(user.getId());
+        if(optionalUser.isEmpty())
+            throw new NoSuchUserException(user.getId());
+        userRepository.update(user);
+    }
+
+
 }

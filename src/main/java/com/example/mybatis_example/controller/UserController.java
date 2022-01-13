@@ -2,11 +2,9 @@ package com.example.mybatis_example.controller;
 
 import com.example.mybatis_example.model.User;
 import com.example.mybatis_example.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,6 +25,21 @@ public class UserController {
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id){
         return userService.getUserById(id);
+    }
+
+    @PostMapping()
+    public void save(@Valid @RequestBody User user){
+        userService.save(user);
+    }
+
+    @PutMapping()
+    public void update(@RequestBody User user){
+        userService.update(user);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        userService.delete(id);
     }
 
 }
